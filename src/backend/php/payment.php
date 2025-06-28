@@ -29,13 +29,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $payment_method =  $_POST["payment_method"];
     $purchase_date = date('Y-m-d');
 
-    $servername = "sql102.infinityfree.com"; // Updated with your server hostname
-$username = "if0_37568701"; // Your database username from the image
-$password = "teoh0628"; // The password provided in the image
-$dbname = "if0_37568701_gns"; // Use the actual database name provided in the image
+    // $servername = "sql102.infinityfree.com"; // Updated with your server hostname
+    // $username = "if0_37568701"; // Your database username from the image
+    // $password = "teoh0628"; // The password provided in the image
+    // $dbname = "if0_37568701_gns"; // Use the actual database name provided in the image
         
-        // Create connection
-    $conn = mysqli_connect($dbHost, $dbUsername, $dbPassword, $dbName);
+    // // Create connection
+    // $conn = mysqli_connect($dbHost, $dbUsername, $dbPassword, $dbName);
+
+    require_once 'db.php';
 
     $payment_method = mysqli_real_escape_string($conn, $payment_method);
     // Insert data into Purchases table

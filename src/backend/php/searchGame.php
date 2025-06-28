@@ -24,17 +24,20 @@
         $searchString = $_POST['searchGame'];
     // echo($name);
             
-    $servername = "sql102.infinityfree.com"; // Updated with your server hostname
-$username = "if0_37568701"; // Your database username from the image
-$password = "teoh0628"; // The password provided in the image
-$dbname = "if0_37568701_gns"; // Use the actual database name provided in the image
+        // $servername = "sql102.infinityfree.com"; // Updated with your server hostname
+        // $username = "if0_37568701"; // Your database username from the image
+        // $password = "teoh0628"; // The password provided in the image
+        // $dbname = "if0_37568701_gns"; // Use the actual database name provided in the image
+            
+        // // Create connection
+        // $conn = mysqli_connect($dbHost, $dbUsername, $dbPassword, $dbName);
+        // // if (!$conn)
+        // //     die('Could not connect to the database: ' . mysqli_connect_error());
+        // // else
+        // //     echo 'Connection successful!';
+
+        require_once 'db.php';
         
-        // Create connection
-        $conn = mysqli_connect($dbHost, $dbUsername, $dbPassword, $dbName);
-        // if (!$conn)
-        //     die('Could not connect to the database: ' . mysqli_connect_error());
-        // else
-        //     echo 'Connection successful!';
         $sql = "SELECT game_id, title, img_src, price FROM games WHERE title LIKE '%$searchString%'";
 
         $res = mysqli_query($conn, $sql);

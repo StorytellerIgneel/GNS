@@ -4,17 +4,19 @@ session_start();
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
-// Database connection parameters
-$servername = "sql102.infinityfree.com"; // Updated with your server hostname
-$username = "if0_37568701"; // Your database username from the image
-$password = "teoh0628"; // The password provided in the image
-$dbname = "if0_37568701_gns"; // Use the actual database name provided in the image
-// Create a new connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+// // Database connection parameters
+// $servername = "sql102.infinityfree.com"; // Updated with your server hostname
+// $username = "if0_37568701"; // Your database username from the image
+// $password = "teoh0628"; // The password provided in the image
+// $dbname = "if0_37568701_gns"; // Use the actual database name provided in the image
+// // Create a new connection
+// $conn = new mysqli($servername, $username, $password, $dbname);
+// // Check connection
+// if ($conn->connect_error) {
+//     die("Connection failed: " . $conn->connect_error);
+// }
+
+require_once 'db.php';
 
 // Get the game ID from the query string
 $game_id = isset($_GET['id']) ? intval($_GET['id']) : 0;

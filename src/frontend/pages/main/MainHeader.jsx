@@ -13,7 +13,7 @@ const MainHeader = () =>(
                   <li> <a href="FAQ.php">FAQ</a></li>
                   <Link to="/login" className="active">
                     Login <i className="fa-solid fa-user"></i>
-                    </Link>
+                  </Link>
               </ul>
           </nav>
       </header>

@@ -25,17 +25,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $user_id = (int)$_POST["user_id"];
 
-    $servername = "sql102.infinityfree.com"; // Updated with your server hostname
-$username = "if0_37568701"; // Your database username from the image
-$password = "teoh0628"; // The password provided in the image
-$dbname = "if0_37568701_gns"; // Use the actual database name provided in the image
+    // $servername = "sql102.infinityfree.com"; // Updated with your server hostname
+    // $username = "if0_37568701"; // Your database username from the image
+    // $password = "teoh0628"; // The password provided in the image
+    // $dbname = "if0_37568701_gns"; // Use the actual database name provided in the image
 
-    // Create connection
-    $conn = mysqli_connect($dbHost, $dbUsername, $dbPassword, $dbName);
+    // // Create connection
+    // $conn = mysqli_connect($dbHost, $dbUsername, $dbPassword, $dbName);
 
-    if (!$conn) {
-        die('Could not connect to the database: ' . mysqli_connect_error());
-    }
+    // if (!$conn) {
+    //     die('Could not connect to the database: ' . mysqli_connect_error());
+    // }
+
+    require_once 'db.php';
 
     // Prepare and execute SQL query for user purchases
     $sql = "SELECT purchase_id FROM purchases WHERE user_id = ?";

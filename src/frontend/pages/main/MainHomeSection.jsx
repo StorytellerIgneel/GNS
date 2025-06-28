@@ -5,7 +5,11 @@ const MainHomeSection = () => (
   <section className="section1 home">
     <div className="home-text">
       <h1>Welcome to</h1>
-      <img src="../../../../images/logo/light/GNS_Horizontal2_Black.svg" />
+      {/* <img src="../../../../images/logo/light/GNS_Horizontal2_Black.svg" /> */}
+      {/* <img src="../../../assets/images/GNS_Horizontal_Black.svg" /> */}
+      <img src="/images/logo/light/GNS_Horizontal_Black.svg" />
+      
+
       <br />
       <p>
         &#34;At <span style={{ color: "red" }}>GNS</span>, we bring the gaming

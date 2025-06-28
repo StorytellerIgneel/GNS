@@ -26,18 +26,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $email  = $_POST["email"];
     
     if (!empty($username) && !empty($password) && !empty($email)){
-        $servername = "sql102.infinityfree.com"; // Updated with your server hostname
-$username = "if0_37568701"; // Your database username from the image
-$password = "teoh0628"; // The password provided in the image
-$dbname = "if0_37568701_gns"; // Use the actual database name provided in the image
+
+        // // TWH outsourced to InfinityFree db
+        // $servername = "sql102.infinityfree.com"; // Updated with your server hostname
+        // $username = "if0_37568701"; // Your database username from the image
+        // $password = "teoh0628"; // The password provided in the image
+        // $dbname = "if0_37568701_gns"; // Use the actual database name provided in the image
+
+        // // Localhost connection parameters
+        // $dbHost = "localhost"; // Updated with your server hostname 
+        // $dbUsername = "root"; // Your database username from the image
+        // $dbPassword = ""; // The password provided in the image
+        // $dbName = "y2s2_wad"; // Use the actual database name
         
-        // Create connection
-        $conn = mysqli_connect($dbHost, $dbUsername, $dbPassword, $dbName);
+        // // Create connection
+        // $conn = mysqli_connect($dbHost, $dbUsername, $dbPassword, $dbName);
         // if (!$conn) {
         //     die('Could not connect to the database: ' . mysqli_connect_error());
         // } else {
         //     echo 'Connection successful!';
         // }
+
+        require_once 'db.php';
+        
         //check if username already exists
         $sql = "SELECT * from users where username = '$username'";
         $res = mysqli_query($conn, $sql);
