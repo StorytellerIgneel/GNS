@@ -30,9 +30,9 @@ function MainPage() {
       <section id="play" className="w-screen">
         <MainPlayableGamesSection />
       </section>
-      <section id="about-us" >
+      <section id="about-us">
         <MainAboutUsSection />
-        <MainRatingSection/>
+        <MainRatingSection />
       </section>
       <Footer />
     </div>

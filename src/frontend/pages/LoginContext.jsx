@@ -36,15 +36,14 @@ export const UserProvider = ({ children }) => {
       // Save the logged-in user to localStorage
       localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem("cart", JSON.stringify([]));
-      setLocalUser(`user_${user.id}`)
-      console.log(localuser)
+      setLocalUser(`user_${user.id}`);
+      console.log(localuser);
       // setUserSet(true);
       // console.log(localuser);
     } else {
       // Clear the user from localStorage when logged out
       // localStorage.removeItem('user');
       // localStorage.removeItem("cart"); // Clear associated cart as well
-      
       // // Update localStorageUser when user logs out
       // setLocalStorageUser(null);
     }
@@ -63,9 +62,7 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider
-      value={{ localuser, user, loginUser, logoutUser }}
-    >
+    <UserContext.Provider value={{ localuser, user, loginUser, logoutUser }}>
       {children}
     </UserContext.Provider>
   );

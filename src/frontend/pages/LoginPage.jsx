@@ -1,6 +1,6 @@
 import "../css/login-style.css";
 
-import React, { useEffect, useState, useRef, useContext} from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import OAuth from "../../backend/OAuth";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -25,16 +25,15 @@ function LoginPage() {
   const [triggerLogin, setTriggerLogin] = useState(false);
 
   useEffect(() => {
-    console.log(username)
+    console.log(username);
   }, [username]);
   useEffect(() => {
-    console.log(email)
+    console.log(email);
   }, [email]);
   useEffect(() => {
-    console.log(password)
+    console.log(password);
   }, [password]);
 
-  
   const handleLoginClick = () => {
     console.log(username, password);
     setLogin(true);
@@ -78,11 +77,10 @@ function LoginPage() {
     registerBtn.style.backgroundColor = "#ff3131";
     loginBtn.style.backgroundColor = "rgba(255,255,255,0.2)";
 
-
     // Show register form and hide login form
     loginForm.style.left = "150%"; // Push login form off screen
     loginForm.style.opacity = 0;
-    
+
     registerForm.style.left = "50%"; // Bring register form into view
     registerForm.style.opacity = 1;
 
@@ -99,7 +97,7 @@ function LoginPage() {
   //           }
   //       })
   //       .then((response) => {
-  //         if (response.data.success) { 
+  //         if (response.data.success) {
   //           loginUser({username, password});
   //           //console
   //           navigate('/store');  // Navigate to '/store' if successful
@@ -113,7 +111,6 @@ function LoginPage() {
   //       })
   //       .catch((err) => console.log(err));
   //   }
-  
 
   const Login = (e) => {
     e.preventDefault();
@@ -125,91 +122,87 @@ function LoginPage() {
         title: "Oops...",
         text: "Please fill in all fields!",
       });
-    }
-    else if (username === "") {
+    } else if (username === "") {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Please fill in the username!",
       });
-    }
-    else if (password === "") {
+    } else if (password === "") {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Please fill in the password!",
       });
-    }
-    else{
+    } else {
       const url = "http://gns.000.pe/login.php";
 
       let formData = new FormData();
       formData.append("username", username);
       formData.append("password", password);
 
-      axios.post(url, formData)
-      .then((response) =>  {
-        console.log(response.data);
-        if (response.data.success) { 
-          let id = response.data.user.id;
-          let username = response.data.user.username;
-          let email = response.data.user.email;
-          loginUser({id, username, email});
-          navigate('/store');  // Navigate to '/store' if successful
-        } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Login Error',
-            text: response.data.error
-          }); // Handle the failure case if needed
-        }
-      }).catch(error => {console.log(error.message)})
+      axios
+        .post(url, formData)
+        .then((response) => {
+          console.log(response.data);
+          if (response.data.success) {
+            let id = response.data.user.id;
+            let username = response.data.user.username;
+            let email = response.data.user.email;
+            loginUser({ id, username, email });
+            navigate("/store"); // Navigate to '/store' if successful
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Login Error",
+              text: response.data.error,
+            }); // Handle the failure case if needed
+          }
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
       setName("");
       setPassword("");
     }
-    
   };
 
   const Register = (e) => {
     e.preventDefault();
 
     console.log("detected register");
-    console.log(username)
-    console.log(email)
-    console.log(password)
+    console.log(username);
+    console.log(email);
+    console.log(password);
     if (username === "" && email === "" && password === "") {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Please fill in all fields!",
       });
-    }
-    else if (username === "") {
+    } else if (username === "") {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Please fill in the username!",
       });
-    }
-    else if (password === "") {
+    } else if (password === "") {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Please fill in the password!",
       });
-    }
-    else if (email === "") {
+    } else if (email === "") {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Please fill in the email!",
       });
-    }
-    else{
-      console.log("register query")
-      console.log(username)
-      console.log(email)
-      console.log(password)
+    } else {
+      console.log("register query");
+      console.log(username);
+      console.log(email);
+      console.log(password);
       const url = "http://gns.000.pe/register.php";
 
       let formData = new FormData();
@@ -217,28 +210,32 @@ function LoginPage() {
       formData.append("password", password);
       formData.append("email", email);
 
-      axios.post(url, formData)
-      .then((response) =>  {
-        console.log(response.data);
-        if (response.data.success) {
-          let id = response.data.user.id;
-          let username = response.data.user.username;
-          let email = response.data.user.email;
-          Swal.fire({
-            icon: 'success',
-            title: 'Success!',
-            text: response.data.message
-          }); // Handle the failure case if needed
-          loginUser({id, username, email});
-          navigate('/store');  // Navigate to '/store' if successful
-        } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Login Error',
-            text: response.data.error
-          }); // Handle the failure case if needed
-        }
-      }).catch(error => {console.log(error.message)})
+      axios
+        .post(url, formData)
+        .then((response) => {
+          console.log(response.data);
+          if (response.data.success) {
+            let id = response.data.user.id;
+            let username = response.data.user.username;
+            let email = response.data.user.email;
+            Swal.fire({
+              icon: "success",
+              title: "Success!",
+              text: response.data.message,
+            }); // Handle the failure case if needed
+            loginUser({ id, username, email });
+            navigate("/store"); // Navigate to '/store' if successful
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Login Error",
+              text: response.data.error,
+            }); // Handle the failure case if needed
+          }
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
       setName("");
       setEmail("");
       setPassword("");
@@ -280,7 +277,10 @@ function LoginPage() {
             </div>
             <p className="featured-words">
               You Are Few Minutes A Way To Get Your Favourite Games on{" "}
-              <img src="../../../images/logo/light/GNS_TextOnly_Black.svg" alt="" />
+              <img
+                src="../../../images/logo/light/GNS_TextOnly_Black.svg"
+                alt=""
+              />
             </p>
           </div>
           <div className="col-2">
@@ -339,7 +339,11 @@ function LoginPage() {
               </div>
               <OAuth triggerLogin={triggerLogin} />
             </form>
-            <form ref={registerForm} onSubmit={Register} className="register-form">
+            <form
+              ref={registerForm}
+              onSubmit={Register}
+              className="register-form"
+            >
               <span className="form-title">Sign Up</span>
               <div className="form-inputs">
                 <div className="input-box">
@@ -376,8 +380,8 @@ function LoginPage() {
                   <i className="fa-solid fa-unlock icon"></i>
                 </div>
                 <div className="input-submit">
-                  <button 
-                    //onClick={Register}
+                  <button
+                  //onClick={Register}
                   >
                     <span>Sign Up </span>
                     <i className="fa-solid fa-right-to-bracket"></i>

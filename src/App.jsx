@@ -19,21 +19,21 @@ function App() {
       <UserProvider>
         <CartProvider>
           <HashRouter>
-              <Routes>
-                <Route path="/" element={<Layout />}>
-                  <Route index element={<MainPage />} />
-                  <Route path="/store" element={<StorePage />} />
-                  <Route path="/store/:game_id" element={<ProductPage />} />
-                  <Route path="/support" element={<Email />} />
-                  <Route path="/cart" element={<CartPage />} />
-                  <Route path="/profile" element={<ProfilePage />} />
-                  <Route path="/faq" element={<FAQ/>}/>
-                </Route>
-                <Route path="/login" element={<LoginPage/>} />
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route index element={<MainPage />} />
+                <Route path="/store" element={<StorePage />} />
+                <Route path="/store/:game_id" element={<ProductPage />} />
+                <Route path="/support" element={<Email />} />
+                <Route path="/cart" element={<CartPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/faq" element={<FAQ />} />
+              </Route>
+              <Route path="/login" element={<LoginPage />} />
             </Routes>
-            </HashRouter>
-          </CartProvider>
-        </UserProvider>
+          </HashRouter>
+        </CartProvider>
+      </UserProvider>
     </div>
   );
 }

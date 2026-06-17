@@ -54,7 +54,7 @@ function SearchBar() {
           value={searchGame}
         />
         <button
-          className="h-8 px-4 rounded-md bg-blue-500 text-white hover:bg-blue-700 focus:outline-none"
+          className="h-8 rounded-md bg-blue-500 px-4 text-white hover:bg-blue-700 focus:outline-none"
           onClick={searchScrape}
         >
           Search
@@ -62,7 +62,7 @@ function SearchBar() {
       </div>
 
       {isDropdownVisible && results.length > 0 && (
-        <div className="absolute w-72 bg-white rounded-sm shadow-md py-2 z-10">
+        <div className="absolute z-10 w-72 rounded-sm bg-white py-2 shadow-md">
           {results.map((game) => (
             <SearchResults
               key={game.game_id}
@@ -80,7 +80,7 @@ function SearchBar() {
 function SearchResults({ img_src, title, slug }) {
   return (
     <Link to={`/store/${slug}`}>
-      <div className="flex h-12 w-full items-center space-x-2 bg-white hover:bg-gray-200 px-2">
+      <div className="flex h-12 w-full items-center space-x-2 bg-white px-2 hover:bg-gray-200">
         <img
           src={img_src}
           alt={title}

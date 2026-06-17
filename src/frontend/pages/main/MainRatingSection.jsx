@@ -134,7 +134,7 @@ function MainRatingSection() {
               </main>
               <div className="profile">
                 <div className="profile-image">
-                  <img src={profileKevinZhang}/>
+                  <img src={profileKevinZhang} />
                 </div>
                 <div className="profile-desc">
                   <span>Kevin Zhang</span>
@@ -283,14 +283,14 @@ function MainRatingSection() {
               </main>
               <div className="profile">
                 <div className="profile-image">
-                  <img src={profileJakeLing}/>
+                  <img src={profileJakeLing} />
                 </div>
                 <div className="profile-desc">
                   <span>Jake Ling</span>
                   <span>College student</span>
                 </div>
               </div>
-              </div>
+            </div>
           </div>
         </div>
       </div>

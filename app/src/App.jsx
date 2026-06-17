@@ -13,10 +13,10 @@ function App() {
       <div className="App">
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<LoginPage/>} />
-            <Route path="/OAuth" element={<OAuth />}/>
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/OAuth" element={<OAuth />} />
             {/* <Route path="/" element={<OAuth />}/> */}
-            <Route path="/store" element ={<Store />} />
+            <Route path="/store" element={<Store />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/wishlist" element={<WishlistPage />} />
           </Routes>

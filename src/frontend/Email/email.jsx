@@ -1,8 +1,8 @@
-import React, { useRef, useState } from 'react';
-import emailjs from '@emailjs/browser';
-import axios from 'axios';
-import Swal from 'sweetalert2';
-import "./Email.css"
+import React, { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
+import axios from "axios";
+import Swal from "sweetalert2";
+import "./Email.css";
 
 const Email = () => {
   const form = useRef();
@@ -13,57 +13,58 @@ const Email = () => {
   const [salutation, setSalutation] = useState("");
   const [subject, setSubject] = useState("");
   const [purpose, setPurpose] = useState("");
- 
+
   const sendEmail = (e) => {
-    if (name === "" && email === "" && message === ""){
+    if (name === "" && email === "" && message === "") {
       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Please fill in all fields!'
+        icon: "error",
+        title: "Oops...",
+        text: "Please fill in all fields!",
       });
-    }
-    else {
+    } else {
       Swal.fire({
-        title: 'Are you sure you want to submit?',
-        icon: 'warning',
+        title: "Are you sure you want to submit?",
+        icon: "warning",
         showCancelButton: true,
         confirmButtonText: "Yes, Submit",
-        cancelButtonText: "No"
+        cancelButtonText: "No",
       }).then((result) => {
-      if (result.isConfirmed){
-        emailjs
-          .sendForm(
-            'service_kkdhmlb', 
-            'template_yqxtmac', 
-            form.current, {
-            publicKey: '3n8xXSvm4KPDChxv-',
-          })
-          .then(
-            () => {
-              console.log('SUCCESS!');
-            },
-            (error) => {
-              console.log('FAILED...', error.text);
-            },
+        if (result.isConfirmed) {
+          emailjs
+            .sendForm("service_kkdhmlb", "template_yqxtmac", form.current, {
+              publicKey: "3n8xXSvm4KPDChxv-",
+            })
+            .then(
+              () => {
+                console.log("SUCCESS!");
+              },
+              (error) => {
+                console.log("FAILED...", error.text);
+              },
+            );
+          Swal.fire(
+            "Submitted!",
+            "Your message has been sent to the customer service team.",
+            "success",
           );
-        Swal.fire("Submitted!", "Your message has been sent to the customer service team.", "success")
-      }
-    })
+        }
+      });
     }
-      
+
     e.preventDefault();
 
     const url = "http://localhost/y2s1-web-app/app/src/backend/php/email.php";
 
     let formData = new FormData();
-    formData.append('user_name', name);
-    formData.append('user_email', email);
-    formData.append('user_message', message);
-    formData.append('salutation', salutation);
+    formData.append("user_name", name);
+    formData.append("user_email", email);
+    formData.append("user_message", message);
+    formData.append("salutation", salutation);
 
-    axios.post(url, formData)
-    .then((response) =>{})
-    .catch(error => {})
+    axios
+      .post(url, formData)
+      .then((response) => {})
+      .catch((error) => {});
   };
 
   return (
@@ -72,41 +73,80 @@ const Email = () => {
       <div className="container-lg">
         <form ref={form} onSubmit={sendEmail}>
           <div className="form-group d-flex align-items-center">
-            <label className='form label'>Salutations</label>
+            <label className="form label">Salutations</label>
             <div className="form-check form-check-inline">
-              <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked={salutation === "Mr"} onChange={() => setSalutation("Mr")}/>
-              <label className="form-check-label" htmlFor="flexCheckDefault">Mr</label>
+              <input
+                className="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+                checked={salutation === "Mr"}
+                onChange={() => setSalutation("Mr")}
+              />
+              <label className="form-check-label" htmlFor="flexCheckDefault">
+                Mr
+              </label>
             </div>
 
             <div className="form-check form-check-inline">
-              <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked={salutation === "Mrs"} onChange={() => setSalutation("Mrs")}/>
-              <label className="form-check-label" htmlFor="flexCheckDefault">Mrs</label>
+              <input
+                className="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+                checked={salutation === "Mrs"}
+                onChange={() => setSalutation("Mrs")}
+              />
+              <label className="form-check-label" htmlFor="flexCheckDefault">
+                Mrs
+              </label>
             </div>
 
             <div className="form-check form-check-inline">
-              <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked={salutation === "Ms"} onChange={() => setSalutation("Ms")}/>
-              <label className="form-check-label" htmlFor="flexCheckDefault">Ms</label>
+              <input
+                className="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+                checked={salutation === "Ms"}
+                onChange={() => setSalutation("Ms")}
+              />
+              <label className="form-check-label" htmlFor="flexCheckDefault">
+                Ms
+              </label>
             </div>
 
             <div className="form-check form-check-inline">
-              <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked={salutation === "Mdm"} onChange={() => setSalutation("Mdm")}/>
-              <label className="form-check-label" htmlFor="flexCheckDefault">Mdm</label>
+              <input
+                className="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+                checked={salutation === "Mdm"}
+                onChange={() => setSalutation("Mdm")}
+              />
+              <label className="form-check-label" htmlFor="flexCheckDefault">
+                Mdm
+              </label>
             </div>
           </div>
 
           <label>
             <div className="input-group mb-3">
-              <span className="input-group-text" id="basic-addon1">@</span>
-              <input 
-                style = {{width: '70vw'}} 
-                type= "text" 
-                name= "user_name" 
-                className= "form-control" 
-                placeholder= "Username"
-                value = {name}
-                onChange = {(e) => setName(e.target.value)} //handle input change
-                aria-label= "Username" 
-                aria-describedby= "basic-addon1"/>
+              <span className="input-group-text" id="basic-addon1">
+                @
+              </span>
+              <input
+                style={{ width: "70vw" }}
+                type="text"
+                name="user_name"
+                className="form-control"
+                placeholder="Username"
+                value={name}
+                onChange={(e) => setName(e.target.value)} //handle input change
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+              />
             </div>
           </label>
 
@@ -114,17 +154,22 @@ const Email = () => {
 
           <label>
             <div className="input-group mb-3">
-              <input 
-                style = {{width: '70vw'}} 
-                name = "user_email" 
-                type= "text" 
-                className = "form-control" 
-                placeholder= "Email"
-                value = {email}
-                onChange = {(e) => setEmail(e.target.value)} //handle input change
-                aria-label= "Recipient's username" 
-                aria-describedby= "basic-addon2"/>
-              <select className='form-select' onChange={(e) => setEmail(email + e.target.value)} aria-label="email provider">
+              <input
+                style={{ width: "70vw" }}
+                name="user_email"
+                type="text"
+                className="form-control"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)} //handle input change
+                aria-label="Recipient's username"
+                aria-describedby="basic-addon2"
+              />
+              <select
+                className="form-select"
+                onChange={(e) => setEmail(email + e.target.value)}
+                aria-label="email provider"
+              >
                 <option value="@gmail.com">@gmail.com</option>
                 <option value="@yahoo.com">@yahoo.com</option>
                 <option value="@hotmail.com">@hotmail.com</option>
@@ -138,46 +183,51 @@ const Email = () => {
 
           <label>
             <div className="input-group mb-3">
-              <span className="input-group-text" id="basic-addon1">Subject:</span>
-              <input 
-                style = {{width: '70vw'}} 
-                type= "text" 
-                name= "subject" 
-                className= "form-control" 
-                placeholder= ""
-                value = {subject}
-                onChange = {(e) => setSubject(e.target.value)} //handle input change
-                aria-label= "subject" 
-                aria-describedby= "basic-addon1"/>
+              <span className="input-group-text" id="basic-addon1">
+                Subject:
+              </span>
+              <input
+                style={{ width: "70vw" }}
+                type="text"
+                name="subject"
+                className="form-control"
+                placeholder=""
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)} //handle input change
+                aria-label="subject"
+                aria-describedby="basic-addon1"
+              />
             </div>
           </label>
 
           <label>
             <div className="input-group">
-            <span className="input-group-text">Message</span>
-            <textarea 
-              style = {{width: '70vw', height: '40vh'}} 
-              name = "message" 
-              className ="form-control"
-              onChange = {(e) => setMessage(e.target.value)} //handle input change
-              aria-label="With textarea"/>
+              <span className="input-group-text">Message</span>
+              <textarea
+                style={{ width: "70vw", height: "40vh" }}
+                name="message"
+                className="form-control"
+                onChange={(e) => setMessage(e.target.value)} //handle input change
+                aria-label="With textarea"
+              />
             </div>
           </label>
 
           <br></br>
-          
+
           <button
-            className={sent?"btn btn-secondary":"btn btn-success"} 
-            type="submit" 
+            className={sent ? "btn btn-secondary" : "btn btn-success"}
+            type="submit"
             value="Send"
-            onClick={() => setSent(true)}>
+            onClick={() => setSent(true)}
+          >
             Send
           </button>
         </form>
       </div>
 
       <div className="mx-auto my-5">
-        <h1 className="text-center mb-5 text-3xl font-bold">Contact Us</h1>
+        <h1 className="mb-5 text-center text-3xl font-bold">Contact Us</h1>
 
         <div className="flex flex-col items-center space-y-4">
           {/* Email */}
@@ -240,15 +290,10 @@ const Email = () => {
             </svg>
             <span>GameNonStopX</span> {/* X handle */}
           </a>
-
-
-
         </div>
       </div>
-
     </div>
-  )
-}
-
+  );
+};
 
 export default Email;

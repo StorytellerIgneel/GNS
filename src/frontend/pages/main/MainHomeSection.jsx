@@ -15,7 +15,9 @@ const MainHomeSection = () => (
         experience with <span style={{ color: "red" }}>GNS</span>!&#34;
       </p>
       <div className="home-buttons">
-        <Link to="/store" className="discover-button autoShow">Discover</Link>
+        <Link to="/store" className="discover-button autoShow">
+          Discover
+        </Link>
         <button
           className="play-button"
           onClick={() => document.getElementById("play").scrollIntoView()}

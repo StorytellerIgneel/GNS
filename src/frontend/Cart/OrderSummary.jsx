@@ -47,24 +47,28 @@ function OrderSummary() {
           </span>
         </div>
       </div>
-      {user? (cart.length > 0 ? (
-        <button
-          className="button w-full bg-red-600 hover:bg-red-800"
-          onClick={handleCheckoutClick}
-        >
-          Checkout
-        </button>
+      {user ? (
+        cart.length > 0 ? (
+          <button
+            className="button w-full bg-red-600 hover:bg-red-800"
+            onClick={handleCheckoutClick}
+          >
+            Checkout
+          </button>
+        ) : (
+          <Link to="/store">
+            <button className="button mt-5 w-full bg-red-600 hover:bg-red-800">
+              You have no items. Go to Store!
+            </button>
+          </Link>
+        )
       ) : (
-        <Link to="/store">
-          <button className="button w-full bg-red-600 hover:bg-red-800 mt-5">
-            You have no items. Go to Store!
+        <Link to="/login">
+          <button className="button mt-5 w-full bg-red-600 hover:bg-red-800">
+            Login to Checkout with us.
           </button>
         </Link>
-      )) : <Link to="/login">
-      <button className="button w-full bg-red-600 hover:bg-red-800 mt-5">
-        Login to Checkout with us.
-      </button>
-    </Link>}
+      )}
       <Modal open={checkoutOpen} onClose={() => setCheckoutOpen(false)}>
         <PaymentMethodModal />
       </Modal>

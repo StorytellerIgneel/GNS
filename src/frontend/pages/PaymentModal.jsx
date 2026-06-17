@@ -10,7 +10,6 @@ import Swal from "sweetalert2";
 import "../../index.css";
 
 function PaymentModal({ selcetedPaymentMethod }) {
-  
   return (
     <div>
       <h1>Checkout</h1>
@@ -60,49 +59,52 @@ function TermsAndAgreement({ selcetedPaymentMethod }) {
   const navigate = useNavigate();
 
   const handleContinueClick = () => {
-    console.log(cart)
+    console.log(cart);
     const url = "http://gns.000.pe/payment.php";
 
-
     let formData = new FormData();
-    const userObject = JSON.parse(localStorage.getItem("user"));  // Convert back to an object
+    const userObject = JSON.parse(localStorage.getItem("user")); // Convert back to an object
 
     formData.append("user_id", userObject.id);
     formData.append("game_list", JSON.stringify(cart));
     formData.append("payment_method", selcetedPaymentMethod);
     formData.append("total_amount", parseFloat(getTotalPrice()).toFixed(2));
 
-    axios.post(url, formData)
-    .then((response) =>  {
-      console.log(response.data);
-      if (response.data.success) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Purchase Complete!',
-          text: "You can now view your purchase history"
-        }); // Handle the failure case if needed
-        navigate('/store');  // Navigate to '/store' if successful
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Payment Error',
-          text: response.data.error
-        }); // Handle the failure case if needed
-      }
-    }).catch(error => {console.log(error.message)})
+    axios
+      .post(url, formData)
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.success) {
+          Swal.fire({
+            icon: "success",
+            title: "Purchase Complete!",
+            text: "You can now view your purchase history",
+          }); // Handle the failure case if needed
+          navigate("/store"); // Navigate to '/store' if successful
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Payment Error",
+            text: response.data.error,
+          }); // Handle the failure case if needed
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
 
-    setPaymentStatusOpen(true); 
+    setPaymentStatusOpen(true);
   };
 
   return (
-    <div className="space-y-5 sticky top-5">
+    <div className="sticky top-5 space-y-5">
       <div className="space-y-8 rounded-lg bg-gray-200 px-16 py-5">
         <div className="py-4">
           <UserProfileLeft />
         </div>
         <div className="space-y-5">
           <p className="font-bold">Payment via {selcetedPaymentMethod}</p>
-          <div className="inline-flex rounded-lg bg-gray-300 p-2 items-center">
+          <div className="inline-flex items-center rounded-lg bg-gray-300 p-2">
             <input
               type="checkbox"
               id="terms"
@@ -130,7 +132,10 @@ function TermsAndAgreement({ selcetedPaymentMethod }) {
           onClick={handleContinueClick}
         />
       </div>
-      <Modal open={paymentStatusOpen} onClose={() => setPaymentStatusOpen(false) }>
+      <Modal
+        open={paymentStatusOpen}
+        onClose={() => setPaymentStatusOpen(false)}
+      >
         <PaymentStatusModal />
       </Modal>
     </div>
@@ -148,7 +153,7 @@ function PaymentSummary() {
             RM {parseFloat(getTotalPrice()).toFixed(2)}
           </span>
         </div>
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between">
           <span className="text-md font-bold">Total</span>
           <span className="text-3xl font-bold">
             RM {parseFloat(getTotalPrice()).toFixed(2)}
@@ -156,11 +161,13 @@ function PaymentSummary() {
         </div>
         <div className="flex justify-between">
           <span className="text-sm">Included 8% VAT</span>
-          <span className="text-sm">RM {(parseFloat(getTotalPrice()) * 0.08).toFixed(2)}</span>
+          <span className="text-sm">
+            RM {(parseFloat(getTotalPrice()) * 0.08).toFixed(2)}
+          </span>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default PaymentModal;
