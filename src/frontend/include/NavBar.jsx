@@ -41,7 +41,7 @@ function NavBarTop() {
         </Link>
       </div>
       <Link to="/profile">
-        <UserProfileRight  />
+        <UserProfileRight />
       </Link>
     </div>
   );

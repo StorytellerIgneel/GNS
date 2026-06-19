@@ -9,7 +9,7 @@ function ProductPage() {
   const [game, setGame] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { cart, addToCart } = useContext(CartContext); 
+  const { cart, addToCart } = useContext(CartContext);
   const navigate = useNavigate();
   const [isInCart, setIsInCart] = useState(false);
 
@@ -80,7 +80,7 @@ function ProductPage() {
         <p>Release Date: {game.release_date}</p>
         <p>Developer: {game.developer}</p>
         <p>Publisher: {game.publisher}</p>
-        <p>Price: RM {game.price==0.00? "FREE" : game.price}</p>
+        <p>Price: RM {game.price == 0.0 ? "FREE" : game.price}</p>
         <button
           className="button m-5 inline-block w-[30%] self-end bg-red-600 hover:bg-red-700"
           onClick={handleClick}

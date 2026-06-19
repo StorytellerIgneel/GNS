@@ -61,20 +61,24 @@ const ProfilePage = () => {
 
     let mockGames = [];
     let formData = new FormData();
-    const userObject = JSON.parse(localStorage.getItem("user"));  // Convert back to an object
+    const userObject = JSON.parse(localStorage.getItem("user")); // Convert back to an object
 
     formData.append("user_id", userObject.id);
 
-    axios.post(url, formData)
-    .then((response) =>  {
-      console.log(response.data.game_list);
-      if (response.data.success) {
-        console.log("success")
-        setPurchases(response.data.game_list);
-      } else {
-        mockGames = []
-      }
-    }).catch(error => {console.log(error.message)})
+    axios
+      .post(url, formData)
+      .then((response) => {
+        console.log(response.data.game_list);
+        if (response.data.success) {
+          console.log("success");
+          setPurchases(response.data.game_list);
+        } else {
+          mockGames = [];
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
 
     setPurchases(mockGames);
     setLoading(false);
@@ -89,7 +93,10 @@ const ProfilePage = () => {
         <header className="profile-header">
           {user ? (
             user.picture ? (
-              <img src={user.picture} alt={user.name? user.name : user.username} />
+              <img
+                src={user.picture}
+                alt={user.name ? user.name : user.username}
+              />
             ) : (
               <FaUserCircle className="profile-placeholder" />
             )
@@ -97,7 +104,7 @@ const ProfilePage = () => {
             <FaUserCircle className="profile-placeholder" />
           )}
           <div className="profile-info">
-            <h1>{user ? (user.name? user.name : user.username) : "Guest"}</h1>
+            <h1>{user ? (user.name ? user.name : user.username) : "Guest"}</h1>
             <p>{user ? user.email : "No email"}</p>
           </div>
         </header>

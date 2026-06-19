@@ -36,7 +36,11 @@ function Layout() {
         onClick={toggle}
         className="fixed bottom-[3%] right-[2%] rounded-full bg-blue-500 px-4 py-2 text-white"
       >
-        {chatopen ? "Hide Gemini" : <FaFacebookMessenger className="size-7" fill="white"/>}
+        {chatopen ? (
+          "Hide Gemini"
+        ) : (
+          <FaFacebookMessenger className="size-7" fill="white" />
+        )}
       </button>
 
       <div

@@ -11,9 +11,7 @@ function Store() {
   useEffect(() => {
     const loadGames = async () => {
       try {
-        const response = await axios.get(
-          "http://gns.000.pe/get_game.php",
-        );
+        const response = await axios.get("http://gns.000.pe/get_game.php");
         setGames(response.data); // Set the fetched data to games state
       } catch (error) {
         setError(error);
@@ -31,7 +29,9 @@ function Store() {
     <div>
       <h1>Store</h1>
       <div className="flex flex-col items-center">
-        <h2 className="text-2xl font-bold text-center">Browse Your Favourite Games.</h2>
+        <h2 className="text-center text-2xl font-bold">
+          Browse Your Favourite Games.
+        </h2>
         <Carousel />
         <div className="mx-auto my-0">
           <ul className="product-list grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">

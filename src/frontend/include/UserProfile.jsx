@@ -11,13 +11,13 @@ function UserProfileRight() {
       {user ? (
         <button
           onClick={logoutUser}
-          className="button text-sm px-3 py-1 rounded-full h-auto bg-blue-500 hover:bg-blue-600"
+          className="button h-auto rounded-full bg-blue-500 px-3 py-1 text-sm hover:bg-blue-600"
         >
           Logout
         </button>
       ) : (
         <Link to="/login">
-          <button className="button text-sm px-3 py-1 h-auto rounded-full bg-red-600 hover:bg-red-700">
+          <button className="button h-auto rounded-full bg-red-600 px-3 py-1 text-sm hover:bg-red-700">
             Login
           </button>
         </Link>
@@ -44,13 +44,12 @@ function UserProfileRight() {
   );
 }
 
-
 export function UserProfileLeft() {
   const { user } = useContext(UserContext);
   return (
     <div className="flex items-center space-x-5">
       <div className="flex space-x-2">
-      {user ? (
+        {user ? (
           user.picture ? (
             <img
               className="h-8 w-8 rounded-full border border-gray-100 shadow-sm sm:h-10 sm:w-10"
@@ -65,7 +64,7 @@ export function UserProfileLeft() {
         )}
       </div>
       <p className="hidden text-xs font-bold text-gray-600 md:block" href="">
-      {user ? (user.name? user.name : user.username) : "Guest"}
+        {user ? (user.name ? user.name : user.username) : "Guest"}
       </p>
     </div>
   );

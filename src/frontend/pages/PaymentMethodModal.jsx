@@ -132,8 +132,8 @@ function PaymentMethodModal() {
           onClick={handleSubmitMethodClick}
         />
       </form>
-      <Modal open={paymentOpen} onClose={() => setPaymentOpen(false) }>
-          <PaymentModal selcetedPaymentMethod={selectedPaymentMethod}/>
+      <Modal open={paymentOpen} onClose={() => setPaymentOpen(false)}>
+        <PaymentModal selcetedPaymentMethod={selectedPaymentMethod} />
       </Modal>
     </div>
   );
